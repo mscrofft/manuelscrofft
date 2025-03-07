@@ -37,20 +37,22 @@
             margin-left: 220px;
             flex-grow: 1;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 10px;
             margin-top: 50px;
+            width: calc(100% - 240px);
         }
         .gallery img {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
             object-fit: cover;
             cursor: pointer;
             transition: transform 0.2s;
         }
         .gallery img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         .modal {
             display: none;
@@ -88,12 +90,12 @@
     </div>
     <script>
         const galleries = {
-            1: ["image-1.jpg", "image-2.jpg", "image-3.jpg"],
-            2: ["image-4.jpg", "image-5.jpg", "image-6.jpg"],
-            3: ["image-7.jpg", "image-8.jpg", "image-9.jpg"],
-            4: ["image-10.jpg", "image-11.jpg", "image-12.jpg"],
-            5: ["image-13.jpg", "image-14.jpg", "image-15.jpg"],
-            6: ["image-16.jpg", "image-17.jpg", "image-18.jpg"]
+            1: ["image-1.jpg", "image-2.jpg", "image-3.jpg", "image-4.jpg", "image-5.jpg"],
+            2: ["image-6.jpg", "image-7.jpg", "image-8.jpg", "image-9.jpg", "image-10.jpg"],
+            3: ["image-11.jpg", "image-12.jpg", "image-13.jpg", "image-14.jpg", "image-15.jpg"],
+            4: ["image-16.jpg", "image-17.jpg", "image-18.jpg", "image-19.jpg", "image-20.jpg"],
+            5: ["image-21.jpg", "image-22.jpg", "image-23.jpg", "image-24.jpg", "image-25.jpg"],
+            6: ["image-26.jpg", "image-27.jpg", "image-28.jpg", "image-29.jpg", "image-30.jpg"]
         };
         
         function showGallery(project) {
