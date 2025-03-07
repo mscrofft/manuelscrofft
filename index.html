@@ -13,7 +13,8 @@
             font-family: monospace;
             font-size: 12pt;
             display: flex;
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
         }
         .sidebar {
             width: 200px;
@@ -21,6 +22,8 @@
             position: fixed;
             top: 50px;
             left: 10px;
+            height: calc(100vh - 50px);
+            overflow-y: auto;
         }
         .sidebar ul {
             list-style: none;
@@ -43,13 +46,21 @@
             margin-top: 50px;
             width: calc(100vw - 240px);
             max-width: calc(100vw - 240px);
+            height: calc(100vh - 50px);
+            overflow-y: auto;
             align-items: center;
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
         }
         .gallery img {
             width: 100%;
             max-width: 800px;
-            height: auto;
-            max-height: calc(100vh / 5 - 10px);
+            height: calc((100vh - 70px) / 5);
             object-fit: contain;
             cursor: pointer;
             transition: transform 0.2s;
@@ -103,13 +114,14 @@
         
         function showGallery(project) {
             const container = document.getElementById("galleryContainer");
-            container.innerHTML = "";
+            container.innerHTML = "<div class='gallery'></div>";
+            const galleryDiv = container.querySelector('.gallery');
             galleries[project].forEach(src => {
                 const img = document.createElement("img");
                 img.src = src;
                 img.alt = "Projeto " + project;
                 img.onclick = function() { openModal(this); };
-                container.appendChild(img);
+                galleryDiv.appendChild(img);
             });
         }
 
