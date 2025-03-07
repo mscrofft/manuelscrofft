@@ -43,12 +43,14 @@
             margin-top: 50px;
             width: calc(100vw - 240px);
             max-width: calc(100vw - 240px);
-            align-items: flex-start;
+            align-items: center;
         }
         .gallery img {
             width: 100%;
+            max-width: 800px;
             height: auto;
-            object-fit: cover;
+            max-height: calc(100vh / 5 - 10px);
+            object-fit: contain;
             cursor: pointer;
             transition: transform 0.2s;
         }
