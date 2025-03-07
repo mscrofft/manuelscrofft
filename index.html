@@ -12,14 +12,30 @@
             color: black;
             font-family: monospace;
             font-size: 12pt;
-            text-align: center;
+            display: flex;
         }
-        .header {
-            position: absolute;
-            top: 10px;
+        .sidebar {
+            width: 200px;
+            padding: 10px;
+            position: fixed;
+            top: 50px;
             left: 10px;
         }
-        .gallery {
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid black;
+        }
+        .sidebar li:hover {
+            background-color: lightgray;
+        }
+        .content {
+            margin-left: 220px;
+            flex-grow: 1;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -55,21 +71,48 @@
 </head>
 <body>
     <div class="header">Manuel Scrofft</div>
-    <div class="gallery">
-        <img src="image-1.jpg" alt="Projeto 1" onclick="openModal(this)">
-        <img src="image-2.jpg" alt="Projeto 2" onclick="openModal(this)">
-        <img src="image-3.jpg" alt="Projeto 3" onclick="openModal(this)">
-        <img src="image-4.jpg" alt="Projeto 4" onclick="openModal(this)">
-
+    <div class="sidebar">
+        <ul>
+            <li onclick="showGallery(1)">Projeto 1</li>
+            <li onclick="showGallery(2)">Projeto 2</li>
+            <li onclick="showGallery(3)">Projeto 3</li>
+            <li onclick="showGallery(4)">Projeto 4</li>
+            <li onclick="showGallery(5)">Projeto 5</li>
+            <li onclick="showGallery(6)">Projeto 6</li>
+        </ul>
+    </div>
+    <div class="content" id="galleryContainer">
     </div>
     <div class="modal" id="modal" onclick="closeModal()">
         <img id="modalImg" src="">
     </div>
     <script>
+        const galleries = {
+            1: ["image1.jpg", "image2.jpg", "image3.jpg"],
+            2: ["image4.jpg", "image5.jpg", "image6.jpg"],
+            3: ["image7.jpg", "image8.jpg", "image9.jpg"],
+            4: ["image10.jpg", "image11.jpg", "image12.jpg"],
+            5: ["image13.jpg", "image14.jpg", "image15.jpg"],
+            6: ["image16.jpg", "image17.jpg", "image18.jpg"]
+        };
+        
+        function showGallery(project) {
+            const container = document.getElementById("galleryContainer");
+            container.innerHTML = "";
+            galleries[project].forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "Projeto " + project;
+                img.onclick = function() { openModal(this); };
+                container.appendChild(img);
+            });
+        }
+
         function openModal(img) {
             document.getElementById("modalImg").src = img.src;
             document.getElementById("modal").style.display = "flex";
         }
+        
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
